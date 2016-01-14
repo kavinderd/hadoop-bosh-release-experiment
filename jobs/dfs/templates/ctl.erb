@@ -4,10 +4,21 @@ RUN_DIR=/var/vcap/sys/run/web_ui
 LOG_DIR=/var/vcap/sys/log/web_ui
 PIDFILE=${RUN_DIR}/pid
 
+export JAVA_HOME=/var/vcap/packages/jdk7
+export HADOOP_HOME=/var/vcap/pacakges/hadoop
+export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/sbin
+
 case $1 in
 
   start)
+    pid_guard $PIDFILE "hadoop"
+    mkdir -p $RUN_DIR
+    mkdir -p $LOG_DIR
+
+    start-dfs
   stop)
+    stop-dfs
+    kill_and_wait $PIDFILE
   *)
     echo "Usage: ctl {start|stop}" ;;
 

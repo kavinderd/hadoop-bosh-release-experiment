@@ -1,0 +1,7 @@
+---
+name: jdk7
+
+dependencies: []
+
+files:
+  - jdk7/jdk-7u79-linux-x64.tar.gz #http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz

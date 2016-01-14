@@ -1,0 +1,11 @@
+# abort script on any command that exits with a non zero value
+set -e
+
+tar xvf hadoop/hadoop-2.6.3.tar.gz
+
+if [[$? != 0]] ; then
+  echo "Failed to extract Hadoop"
+  exit 1
+fi
+
+cp -a hadoop-2.6.3 ${BOSH_INSTALL_TARGET}/lib
